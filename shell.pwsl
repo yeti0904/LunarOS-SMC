@@ -1,0 +1,23 @@
+hidelogo
+print/"Welcome to LunarOS",\n
+set/"name","root"
+while/[true]
+	print/name,"@lunaros $ "
+	read/"shell input","cmdinput"
+	print/cmdinput,\n	
+	if/[cmdinput == "name"]
+		print/"Renaming, what do you want your new name to be?",\n
+		read/"shell input","name"
+		print/"name changed.",\n
+	else
+		if/[cmdinput == "info"]
+			print/"Name: ",name,\n,"Shell: yesh",\n,"OS: LunarOS",\n
+		else
+			if/[cmdinput == "moo"]
+				print/"MOO",\n
+			else
+				print/cmdinput,": Command not found.",\n
+			endif
+		endif
+	endif
+endloop
