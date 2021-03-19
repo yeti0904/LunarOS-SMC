@@ -73,7 +73,7 @@ linkdef/"_listpart"
 		endloop
 	endwarp
 }
-print/"test-os boot",\n,"Reading FSSC Partition..",\n
+print/"LunarOS boot",\n,"Reading FSSC Partition..",\n
 set/"d",1
 _listpart
 getlistlength/"pt"/"pl"
