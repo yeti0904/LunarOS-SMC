@@ -90,15 +90,9 @@ repeat/pl
 		calc/"i2=i2+1"
 		getitem/"fnames",i2/"cfn"
 		//print/cfn,\n
-		if/[cfn == "init.smc"]
-			getitem/"fdata",i2/"init"
-			print/"[OK] Found init. Starting init",\n
+		if/[cfn == "shell.smc"]
+			getitem/"fdata",i2/"shell"
 			run/init,"wait"/d,di
-			print/\n,"kernel panic: init has stopped.",\n
-			while/[true]
-				wait/1024
-			endloop
-			exit
 		endif
 	endloop
 endloop
