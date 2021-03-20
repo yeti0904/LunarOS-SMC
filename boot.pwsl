@@ -74,30 +74,24 @@ linkdef/"_listpart"
 	endwarp
 }
 print/"LunarOS boot",\n,"Reading FSSC Partition..",\n
-set/"d",1
+getitem/"arg_1",1/"d"
+getitem/"arg_1",2/"di"
 _listpart
 getlistlength/"pt"/"pl"
-set/"di",0
-repeat/pl
-	calc/"di=di+1"
-	getitem/"ptd",di/"ptbin"
-	_ls/"/",ptbin
-	getlistlength/"ftypes"/"fc"
-	set/"i2",0
-	while/[i2 < fc]
-		calc/"i2=i2+1"
-		getitem/"fnames",i2/"cfn"
-		//print/cfn,\n
-		if/[cfn == "init.smc"]
-			getitem/"fdata",i2/"init"
-			print/"[OK] Found init. Starting init",\n
-			run/init,"wait"/d,di
-			print/\n,"kernel panic: init has stopped.",\n
-			while/[true]
-				wait/1024
-			endloop
-			exit
-		endif
-	endloop
+_listpart
+getitem/"ptd",di/"ptbin"
+_ls/"/",ptbin
+getlistlength/"ftypes"/"fc"
+set/"i2",0
+while/[i2 < fc]
+    calc/"i2=i2+1"
+    getitem/"fnames",i2/"cfn"
+    //print/cfn,\n
+    if/[cfn == "init.smc"]
+        getitem/"fdata",i2/"init"
+        //print/"EXEC: ",boot,\n
+        run/init,"bg"/d,di
+        exit
+    endif
 endloop
 //previous code created by adazem009 on GitHub (modified to start init!)
